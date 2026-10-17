@@ -1,0 +1,9 @@
+[
+  {"id":"R01_number","check":"has_number","severity":"error","pass_message":"رقم القرار موجود.","fail_message":"لم يُعثر على رقم القرار.","default_reference":"قواعد شكلية عامة للقرارات الإدارية"},
+  {"id":"R02_date","check":"has_date","severity":"error","pass_message":"تاريخ القرار موجود.","fail_message":"لم يُعثر على تاريخ القرار.","default_reference":"قواعد شكلية عامة للقرارات الإدارية"},
+  {"id":"R03_issuer","check":"has_issuer","severity":"error","pass_message":"الجهة المصدِرة محددة.","fail_message":"الجهة المصدِرة غير واضحة (تحقق من الاختصاص).","default_reference":"قواعد الاختصاص"},
+  {"id":"R04_visas","check":"has_visas","min":1,"severity":"error","pass_message":"التأشيرات (المراجع القانونية) موجودة.","fail_message":"لا توجد تأشيرات تبيّن السند القانوني للقرار.","default_reference":"قواعد شكلية عامة للقرارات الإدارية"},
+  {"id":"R05_statut","check":"visa_mentions","needle":"06-03","severity":"warning","pass_message":"القرار يشير إلى الأمر 06-03.","fail_message":"لا إشارة إلى الأمر 06-03 في التأشيرات؛ تحقق هل القرار يحتاجها.","legal_query":"06-03","default_reference":"الأمر 06-03 المتضمن القانون الأساسي العام للوظيفة العمومية"},
+  {"id":"R06_articles","check":"has_articles","severity":"warning","pass_message":"المنطوق مرتب في مواد.","fail_message":"لم تُكتشف مواد في المنطوق (قد يكون خطأ OCR).","default_reference":"قواعد شكلية عامة للقرارات الإدارية"},
+  {"id":"R07_signature","check":"has_signature","severity":"warning","pass_message":"إشارة إلى الإمضاء موجودة.","fail_message":"لم تُكتشف إشارة إلى الإمضاء.","default_reference":"قواعد شكلية عامة للقرارات الإدارية"}
+]

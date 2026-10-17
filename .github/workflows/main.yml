@@ -1,0 +1,29 @@
+name: Build APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.7
+      - name: Download Arabic OCR model
+        run: |
+          curl -fL -o app/src/main/assets/tessdata/ara.traineddata \
+            https://github.com/tesseract-ocr/tessdata_fast/raw/main/ara.traineddata
+          rm -f app/src/main/assets/tessdata/PUT_ara.traineddata_HERE.txt
+      - run: gradle :app:testDebugUnitTest
+      - run: gradle :app:assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BaladiyaCheck-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
